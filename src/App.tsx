@@ -1,7 +1,10 @@
 import React from "react";
+import { useState } from "react";
+
 // Components
 import QuestionCard from "./components/QuestionCard";
-import { useState } from "react";
+
+const TOTAL_QUESTIONS = 10; //set from API
 
 const App = () => {
     // Set states
@@ -26,7 +29,14 @@ const App = () => {
             </button>
             <p className="score">Score: </p>
             <p>Loading Questions ...</p>
-            <QuestionCard />
+            <QuestionCard 
+				questionNum={number + 1}
+				totalQuestions={TOTAL_QUESTIONS}
+				question={questions[number]}
+				answers={questions[number].answer}
+				userAnswer={userAnswers ? userAnswers[number]: undefined}
+				callback={checkAnswer}
+			/>
             <button className="next" onClick={nextQuestion}>
                 Next Question
             </button>
